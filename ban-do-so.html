@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bản Đồ Số Tương Tác | Nghệ An: Miền Di Sản</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Leaflet & Clustering -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+    
+    <!-- Styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #7c000e;
+            --secondary: #2E7D32;
+            --background: #fff8f7;
+        }
+        body { 
+            background-color: var(--background); 
+            color: #261817; 
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+        }
+        h1, h2, h3, .font-headline { font-family: 'Marcellus', serif !important; }
+        
+        #map { height: 100%; width: 100%; z-index: 1; }
+        
+        /* Custom Popup Styling */
+        .leaflet-popup-content-wrapper {
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .leaflet-popup-content { margin: 0; width: 300px !important; }
+        .popup-img { width: 100%; height: 160px; object-cover: cover; }
+        .popup-body { padding: 20px; }
+        
+        /* Dark Mode overrides */
+        .dark .leaflet-container { background: #1a1a1a; }
+        
+        /* Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            transform: translateX(-100%);
+            pointer-events: none;
+        }
+
+        .category-pill.active { background-color: var(--secondary); color: white; }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7c000e",
+                        "secondary": "#2E7D32",
+                        "background": "#fff8f7",
+                    },
+                    "fontFamily": {
+                        "headline": ["Marcellus", "serif"],
+                        "body": ["Outfit", "sans-serif"]
+                    }
+                },
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface transition-colors duration-300" data-page="ban-do-so">
+    <div id="nav-container"></div>
+    <div class="page-transition-overlay" id="page-overlay"></div>
+
+    <main class="w-full flex flex-col md:flex-row h-screen pt-16">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-full md:w-[400px] bg-white dark:bg-stone-900 border-r border-stone-200 dark:border-stone-800 flex flex-col z-20 transition-all duration-300">
+            <div class="p-6 border-b border-stone-100 dark:border-stone-800">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-2xl font-headline font-bold text-secondary dark:text-green-400">Bản Đồ Số</h1>
+                        <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 dark:text-stone-400">Khám phá Nghệ An</p>
+                    </div>
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined dark:text-yellow-400">dark_mode</span>
+                    </button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="relative group">
+                    <input id="search-input" class="w-full bg-stone-50 dark:bg-stone-800 border-none rounded-2xl py-4 pl-12 pr-4 text-sm focus:ring-2 focus:ring-secondary/20 dark:text-white transition-all" 
+                           placeholder="Tìm tên địa danh, đặc sản..." type="text"/>
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-stone-400">search</span>
+                </div>
+
+                <!-- Categories -->
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <button class="category-pill active text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 hover:border-secondary transition-all" data-category="all">Tất cả</button>
+                    <button class="category-pill text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 hover:border-secondary transition-all" data-category="tourism">🏖️ Du lịch</button>
+                    <button class="category-pill text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 hover:border-secondary transition-all" data-category="food">🍜 Ẩm thực</button>
+                    <button class="category-pill text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 hover:border-secondary transition-all" data-category="craft">🏺 Làng nghề</button>
+                    <button class="category-pill text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 hover:border-secondary transition-all" data-category="history">⛩️ Di tích</button>
+                </div>
+            </div>
+
+            <!-- List Results -->
+            <div id="location-list" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Items populated by JS -->
+            </div>
+
+            <!-- Legend & Reset -->
+            <div class="p-6 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex justify-between items-center">
+                <button id="reset-view" class="flex items-center gap-2 text-xs font-bold text-primary dark:text-red-400 uppercase tracking-widest hover:underline">
+                    <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                    Toàn tỉnh
+                </button>
+                <div class="flex gap-2">
+                    <button id="share-btn" class="w-8 h-8 rounded-lg bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 flex items-center justify-center hover:bg-stone-50">
+                        <span class="material-symbols-outlined text-[18px]">share</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map Screen -->
+        <div class="flex-1 relative">
+            <div id="map"></div>
+            
+            <!-- Controls Overlay -->
+            <div class="absolute top-6 right-6 z-[1000] flex flex-col gap-3">
+                <div class="bg-white/90 dark:bg-stone-900/90 backdrop-blur-xl p-2 rounded-2xl shadow-2xl flex flex-col gap-1 border border-white/20">
+                    <button onclick="map.zoomIn()" class="w-10 h-10 flex items-center justify-center hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl transition-colors">
+                        <span class="material-symbols-outlined dark:text-white">add</span>
+                    </button>
+                    <div class="h-px bg-stone-100 dark:bg-stone-800 mx-2"></div>
+                    <button onclick="map.zoomOut()" class="w-10 h-10 flex items-center justify-center hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl transition-colors">
+                        <span class="material-symbols-outlined dark:text-white">remove</span>
+                    </button>
+                </div>
+                <button id="fullscreen-btn" class="bg-white/90 dark:bg-stone-900/90 backdrop-blur-xl p-3 rounded-2xl shadow-2xl border border-white/20 hover:bg-stone-100 dark:hover:bg-stone-800 flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined dark:text-white">fullscreen</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        const LOCATIONS = [
+            // Du lịch & Danh thắng
+            { id: "cua-lo", name: "Biển Cửa Lò", category: "tourism", lat: 18.8167, lng: 105.7167, image: "https://images.unsplash.com/photo-1544321742-9989808a705e?auto=format&fit=crop&q=80&w=800", tags: ["Biển Đảo", "Hải Sản"], description: "Bãi biển nổi tiếng nhất Nghệ An với bãi cát dài 10km.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "pu-mat", name: "Vườn Quốc gia Pù Mát", category: "tourism", lat: 18.9833, lng: 104.4, image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800", tags: ["Rừng Nguyên Sinh", "Thác Nước"], description: "Khu dự trữ sinh quyển thế giới với vẻ đẹp hoang sơ.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "lang-sen", name: "Khu Di Tích Làng Sen", category: "tourism", lat: 18.6517, lng: 105.3833, image: "https://images.unsplash.com/photo-1596422846543-75c6fc183f27?auto=format&fit=crop&q=80&w=800", tags: ["Lịch Sử", "Bác Hồ"], description: "Quê hương của Chủ tịch Hồ Chí Minh vĩ đại.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "doi-che", name: "Đồi Chè Thanh Chương", category: "craft", lat: 18.7, lng: 105.25, image: "https://images.unsplash.com/photo-1545657802-53696f8c7b65?auto=format&fit=crop&q=80&w=800", tags: ["Check-in", "Thiên Nhiên"], description: "Đảo chè xanh mướt giữa lòng hồ nước.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "xao-va", name: "Thác Xao Va", category: "tourism", lat: 19.7333, lng: 104.6167, image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", tags: ["Miền Tây Nghệ An", "Thác Nước"], description: "Dòng thác hùng vĩ giữa rừng già Quế Phong.", articleUrl: "https://visitnghean.gov.vn" },
+            
+            // Ẩm thực
+            { id: "chao-luon", name: "Cháo Lươn Thành Vinh", category: "food", lat: 18.6739, lng: 105.6920, image: "https://images.unsplash.com/photo-1591814468924-caf7f4b2c7ff?auto=format&fit=crop&q=80&w=800", tags: ["Đặc Sản", "Bữa Sáng"], description: "Vị cay nồng đặc trưng của súp lươn xứ Nghệ.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            { id: "keo-cu-do", name: "Kẹo Cu Đơ", category: "food", lat: 18.67, lng: 105.69, image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800", tags: ["Quà Tặng", "Ăn Vặt"], description: "Vị ngọt mật mía quyện cùng gừng và lạc giòn.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            { id: "cam-xa-doai", name: "Cam Xã Đoài", category: "food", lat: 18.7667, lng: 105.5833, image: "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=800", tags: ["Trái Cây", "Nghi Lộc"], description: "Loại cam tiến vua ngọt thơm nức tiếng.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            
+            // Làng nghề
+            { id: "lang-gom", name: "Làng Gốm Trù Sơn", category: "craft", lat: 18.9, lng: 105.27, image: "https://images.unsplash.com/photo-1525498128493-380d1990a112?auto=format&fit=crop&q=80&w=800", tags: ["Gốm Sứ", "Đô Lương"], description: "Làng gốm cổ truyền duy nhất vẫn làm bằng tay.", articleUrl: "https://baonghean.vn" },
+            { id: "det-tho-cam", name: "Dệt Thổ Cẩm Tương Dương", category: "craft", lat: 19.25, lng: 104.25, image: "https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&q=80&w=800", tags: ["Dân Tộc Thái", "Thủ Công"], description: "Nét văn hóa dệt tinh tế của người dân vùng cao.", articleUrl: "https://baonghean.vn" },
+            
+            // Di tích
+            { id: "den-cuong", name: "Đền Cuông", category: "history", lat: 18.9833, lng: 105.5167, image: "https://images.unsplash.com/photo-1580221370712-426f4f24f57c?auto=format&fit=crop&q=80&w=800", tags: ["Tâm Linh", "Diễn Châu"], description: "Nơi thờ An Dương Vương với kiến trúc độc đáo.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "thanh-co", name: "Thành Cổ Vinh", category: "history", lat: 18.6739, lng: 105.6921, image: "https://images.unsplash.com/photo-1594226021271-9258386f6713?auto=format&fit=crop&q=80&w=800", tags: ["Lịch Sử", "Kiến Trúc"], description: "Thành cổ triều Nguyễn còn sót lại giữa phố vinh.", articleUrl: "https://visitnghean.gov.vn" }
+        ];
+
+        let map, markers;
+        let activeMarkers = [];
+        
+        // Tile Layers
+        const lightMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        });
+        
+        const darkMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        });
+
+        function initMap() {
+            // Center of Nghe An
+            map = L.map('map', {
+                center: [19.1, 104.9],
+                zoom: 9,
+                zoomControl: false,
+                layers: [lightMode]
+            });
+
+            markers = L.markerClusterGroup({
+                showCoverageOnHover: false,
+                iconCreateFunction: function(cluster) {
+                    return L.divIcon({ 
+                        html: `<div class="bg-secondary text-white w-10 h-10 rounded-full flex items-center justify-center font-bold border-4 border-white shadow-lg">${cluster.getChildCount()}</div>`,
+                        className: 'cluster-icon',
+                        iconSize: [40, 40]
+                    });
+                }
+            });
+
+            renderLocations(LOCATIONS);
+            map.addLayer(markers);
+        }
+
+        function createCustomMarker(loc) {
+            const colors = {
+                tourism: '#1565C0',
+                food: '#EF6C00',
+                craft: '#2E7D32',
+                history: '#C62828'
+            };
+            
+            const iconHtml = `<div class="category-marker" style="background:${colors[loc.category]}; width:16px; height:16px; border:3px solid white; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,0.3);"></div>`;
+            return L.divIcon({ html: iconHtml, className: 'marker-container', iconSize: [16, 16] });
+        }
+
+        function renderLocations(data) {
+            markers.clearLayers();
+            const listContainer = document.getElementById('location-list');
+            listContainer.innerHTML = '';
+
+            data.forEach(loc => {
+                const marker = L.marker([loc.lat, loc.lng], { icon: createCustomMarker(loc) });
+                
+                // Custom Popup
+                const popupContent = `
+                    <div class="rounded-2xl overflow-hidden font-body">
+                        <img class="popup-img" src="${loc.image}" alt="${loc.name}">
+                        <div class="popup-body">
+                            <h3 class="text-lg font-headline font-bold text-primary mb-1">${loc.name}</h3>
+                            <div class="flex gap-1 mb-3">
+                                ${loc.tags.map(t => `<span class="bg-stone-100 dark:bg-stone-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">${t}</span>`).join('')}
+                            </div>
+                            <p class="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">${loc.description}</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="${loc.articleUrl}" target="_blank" class="bg-secondary text-white text-[10px] font-bold py-2 rounded-lg text-center">Xem Chi Tiết</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}" target="_blank" class="bg-stone-100 text-stone-700 text-[10px] font-bold py-2 rounded-lg text-center">Chỉ Đường</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                marker.bindPopup(popupContent);
+
+                marker.on('click', () => {
+                    map.flyTo([loc.lat, loc.lng], 14, { duration: 1.5 });
+                });
+
+                markers.addLayer(marker);
+
+                // Add to Sidebar List
+                const item = document.createElement('div');
+                item.className = 'p-4 bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 rounded-2xl cursor-pointer hover:shadow-lg transition-all group';
+                item.innerHTML = `
+                    <div class="flex gap-4">
+                        <img class="w-20 h-20 rounded-xl object-cover" src="${loc.image}">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm text-on-surface dark:text-white mb-1">${loc.name}</h4>
+                            <p class="text-[11px] text-stone-400 dark:text-stone-500 line-clamp-2">${loc.description}</p>
+                        </div>
+                    </div>
+                `;
+                item.onclick = () => {
+                    map.flyTo([loc.lat, loc.lng], 14);
+                    marker.openPopup();
+                };
+                listContainer.appendChild(item);
+            });
+        }
+
+        // Search Logic
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = LOCATIONS.filter(l => l.name.toLowerCase().includes(query) || l.description.toLowerCase().includes(query));
+            renderLocations(filtered);
+        });
+
+        // Filter Logic
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                
+                const cat = pill.getAttribute('data-category');
+                const filtered = cat === 'all' ? LOCATIONS : LOCATIONS.filter(l => l.category === cat);
+                renderLocations(filtered);
+            });
+        });
+
+        // Theme Toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            if(isDark) {
+                map.removeLayer(lightMode);
+                map.addLayer(darkMode);
+            } else {
+                map.removeLayer(darkMode);
+                map.addLayer(lightMode);
+            }
+        });
+
+        // Reset View
+        document.getElementById('reset-view').addEventListener('click', () => {
+            map.flyTo([19.1, 104.9], 9);
+        });
+
+        // Fullscreen
+        document.getElementById('fullscreen-btn').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+</html>

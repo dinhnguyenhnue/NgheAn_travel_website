@@ -1,0 +1,175 @@
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hành Trình Ẩm Thực | Nghệ An</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #7c000e;
+            --secondary: #735c00;
+            --background: #fff8f7;
+        }
+        body { 
+            background-color: var(--background); 
+            color: #261817; 
+            font-family: 'Outfit', sans-serif;
+            opacity: 0;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-headline { font-family: 'Marcellus', serif !important; }
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            transform: translateX(-100%);
+            pointer-events: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7c000e",
+                        "secondary": "#735c00",
+                        "background": "#fff8f7",
+                        "surface": "#fff8f7",
+                    },
+                    "fontFamily": {
+                        "headline": ["Marcellus", "serif"],
+                        "body": ["Outfit", "sans-serif"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fff8f7; color: #261817; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .food-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .food-card:hover { transform: scale(1.03); }
+        .food-card:hover .food-overlay { opacity: 1; }
+    </style>
+</head>
+<body class="bg-background text-on-surface" data-page="am-thuc">
+    <div id="nav-container"></div>
+
+    <main class="w-full">
+        <!-- Hero Section -->
+        <section class="relative h-[700px] flex items-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover" data-alt="Close-up artistic shot of a steaming bowl of Eel Soup (Soup Luon) flavored with spicy turmeric, green herbs, and toasted rice paper on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-transparent"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+                <div class="max-w-2xl bg-white/10 backdrop-blur-xl p-12 rounded-[40px] border border-white/20 shadow-2xl">
+                    <span class="text-secondary font-bold uppercase tracking-[0.4em] text-xs mb-4 block">Vị Ngon Xứ Nghệ</span>
+                    <h1 class="text-5xl md:text-7xl font-headline font-black text-white leading-tight mb-8">Hành Trình <br/><span class="text-secondary-container">Ẩm Thực</span></h1>
+                    <p class="text-white/90 text-lg font-body leading-relaxed mb-8">Không chỉ là món ăn, đó là kết tinh của phù sa sông Lam và nắng gió miền Trung, là tình cảm nồng hậu của người dân quê Bác.</p>
+                    <button class="bg-white text-primary px-8 py-4 rounded-full font-bold shadow-xl hover:scale-105 transition-transform">Bắt đầu khám phá</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signature Dishes -->
+        <section class="py-24 bg-surface px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div>
+                        <h2 class="text-5xl font-headline font-black text-on-surface">Món Ngon <span class="text-primary italic">Trứ Danh</span></h2>
+                        <p class="text-on-surface-variant mt-4 text-lg">Đừng rời Nghệ An nếu chưa nếm thử những hương vị tuyệt vời này.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-sm font-bold text-secondary uppercase tracking-widest border-b-2 border-secondary pb-1">Top đặc sản</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+                    <div class="md:col-span-8 relative food-card rounded-[32px] overflow-hidden group cursor-pointer shadow-xl">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent transition-opacity group-hover:opacity-100"></div>
+                        <div class="absolute bottom-0 left-0 p-12 text-white">
+                            <h3 class="text-4xl font-headline font-bold mb-4">Súp Lươn Xứ Nghệ</h3>
+                            <p class="max-w-md text-white/80 leading-relaxed font-body">Lươn đồng béo vàng, sền sệt trong nước dùng sánh đỏ cay nồng. Ăn kèm bánh mì hoặc bánh mướt nóng hổi cho bữa sáng đầy năng lượng.</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-4 grid grid-rows-2 gap-6">
+                        <div class="relative food-card rounded-[32px] overflow-hidden group cursor-pointer shadow-lg">
+                            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-secondary/90 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
+                            <div class="absolute bottom-0 left-0 p-8 text-white">
+                                <h4 class="text-xl font-headline font-bold mb-1">Nhút Thanh Chương</h4>
+                                <p class="text-[10px] opacity-70 uppercase tracking-widest font-bold">"Kim chi" của xứ Nghệ</p>
+                            </div>
+                        </div>
+                        <div class="relative food-card rounded-[32px] overflow-hidden group cursor-pointer shadow-lg">
+                            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-tertiary/90 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
+                            <div class="absolute bottom-0 left-0 p-8 text-white">
+                                <h4 class="text-xl font-headline font-bold mb-1">Tương Nam Đàn</h4>
+                                <p class="text-[10px] opacity-70 uppercase tracking-widest font-bold">Vị ngọt của đất, hương của nắng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Map / Experience -->
+        <section class="py-24 bg-surface-container-low overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2">
+                    <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-4 block">Gợi Ý Trải Nghiệm</span>
+                    <h2 class="text-4xl font-headline font-black text-on-surface mb-8 leading-tight">Food Tour Vinh City: Nơi Hội Tụ Tinh Hoa</h2>
+                    <p class="text-on-surface-variant mb-8 leading-relaxed">Dạo quanh các con phố Đào Tấn, Nguyễn Văn Cừ hay quanh cổng Thành Cổ để khám phá thiên đường ăn vặt và súp lươn hàng đầu.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="bg-primary-container text-white p-2 rounded-lg">
+                                <span class="material-symbols-outlined">map</span>
+                            </span>
+                            <div>
+                                <h5 class="font-bold text-sm">Chợ Vinh</h5>
+                                <p class="text-xs text-on-surface-variant italic">Nơi mua quà đặc sản: Cu đơ, măng khô, mực Cửa Lò.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="bg-secondary-container text-on-secondary-container p-2 rounded-lg">
+                                <span class="material-symbols-outlined">star</span>
+                            </span>
+                            <div>
+                                <h5 class="font-bold text-sm">Quán Lươn Đồng Nam Đàn</h5>
+                                <p class="text-xs text-on-surface-variant italic">Món lươn om chuối đậu chuẩn vị nhất vùng.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+                    <div class="relative bg-white p-4 rounded-[40px] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <img class="rounded-[32px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/site-data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/transitions.js"></script>
+</body>
+</html>

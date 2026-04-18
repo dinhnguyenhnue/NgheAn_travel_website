@@ -1,0 +1,254 @@
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nghệ An: Miền Di Sản | Trang Chủ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #7c000e;
+            --secondary: #735c00;
+            --background: #fff8f7;
+        }
+        body { 
+            background-color: var(--background); 
+            color: #261817; 
+            font-family: 'Outfit', sans-serif;
+            opacity: 0;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-headline { font-family: 'Marcellus', serif !important; }
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            transform: translateX(-100%);
+            pointer-events: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7c000e",
+                        "secondary": "#735c00",
+                        "background": "#fff8f7",
+                        "surface": "#fff8f7",
+                    },
+                    "fontFamily": {
+                        "headline": ["Marcellus", "serif"],
+                        "body": ["Outfit", "sans-serif"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fff8f7; color: #261817; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .museum-card { transition: transform 0.3s ease, background-color 0.3s ease; }
+        .museum-card:hover { transform: translateY(-4px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface" data-page="index">
+    <div id="nav-container"></div>
+    
+    <header class="relative h-[870px] w-full overflow-hidden flex items-center">
+        <div class="absolute inset-0 z-0">
+            <img class="w-full h-full object-cover" data-alt="Cinematic panoramic view of Nghe An province with rolling green mountains of Muong Thanh and the turquoise shoreline of Cua Lo beach at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLEUxV2Fo1VgUgnclWdCHlXqBGtXpFhRXBfHbXBz8IeAE3JNjpZ2BQ2v4IY5HE_yyx70KJ1hhywm27KUGIUBOmax05hOaSQg9CjTf9ly0gQYvwvUI3_hyv7Xa5_BCKRwj_dqO_AlNxWPJiOvxzrHXgHtAFx5wKRDpcV62ojlCNjgc9ktTc4RccXIp94LybpVNiLS-UlJyFRcZkhkcUVeQkwiW3Vr1elmX7xM8n1onbWjxqYDtt9d8vaZ1fX76ROrSjr4NSBZU1dn8"/>
+            <div class="absolute inset-0 bg-gradient-to-r from-on-surface/60 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+            <div class="max-w-3xl">
+                <span class="text-secondary-container font-semibold tracking-[0.2em] uppercase text-xs mb-4 block">Khám Phá Miền Đất Học</span>
+                <h1 class="text-6xl md:text-8xl font-headline font-extrabold text-white leading-[1.1] -tracking-[0.03em] mb-8">
+                    Khơi nguồn <br/><span class="text-secondary">Di Sản</span>
+                </h1>
+                <p class="text-white/90 text-lg md:text-xl font-body max-w-xl leading-relaxed mb-10">
+                    Hành trình qua những trang sử hào hùng, những cánh đồng vàng óng và bờ biển xanh ngắt của vùng đất địa linh nhân kiệt.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="di-san.html" class="bg-primary text-on-primary px-8 py-4 rounded-md font-medium shadow-xl shadow-primary/20 hover:bg-primary-container transition-all">
+                        Khám phá ngay
+                    </a>
+                    <a href="hanh-chinh.html" class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-md font-medium hover:bg-white/20 transition-all">
+                        Xem bản đồ số
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5 order-2 md:order-1">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+                        <h2 class="text-4xl font-headline font-bold text-primary mb-6 leading-tight">
+                            Tầm Nhìn <br/>Địa Giới Mới
+                        </h2>
+                        <div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
+                            <p>
+                                Nghệ An đang bước vào kỷ nguyên phát triển mới với việc mở rộng quy hoạch đô thị. Thành phố Vinh được định hướng trở thành trung tâm kinh tế, văn hóa của vùng Bắc Trung Bộ.
+                            </p>
+                            <p>
+                                Việc sáp nhập thị xã Cửa Lò và các xã thuộc huyện Nghi Lộc vào không gian đô thị Vinh không chỉ là sự thay đổi về mặt hành chính mà còn là bước nhảy vọt về tiềm năng du lịch và logistics.
+                            </p>
+                        </div>
+                        <div class="mt-10 p-6 bg-surface-container-low rounded-xl border-l-4 border-secondary">
+                            <h4 class="font-headline font-bold text-on-surface mb-2">Đô Thị Loại 1</h4>
+                            <p class="text-sm opacity-80 italic">"Xây dựng Vinh trở thành đô thị thông minh, hiện đại và đậm đà bản sắc văn hóa xứ Nghệ."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-7 order-1 md:order-2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 pt-12">
+                            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                                <img class="w-full h-64 object-cover" data-alt="Modern Vinh city skyline at dusk with glowing city lights and Quang Trung square focal point" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_rQHlti5TldmvvMEXENZhNKvlBDctLEl9KtNuRMjDtEsX8odoUMlQ_8spYG3xz4lDpDH2rPkgpDIn6QFCKVHz0foGtypGa7Ej3frGyEiWtou_P1KcXwmr_eR3AlYxz2TbUxFrVKH1yRrkbOlm-NEp7sEICJSZnB4hvhJAdEkwXsq5_pN7hiEuzucCdPAzd_d3DqKuyYXvuBzlb7PcSUxBdQ-aco-3hvjglCViH5Bigl3fyUOm9rLaSv_qkUX9EPqQm9bFqn_ik3c"/>
+                            </div>
+                            <div class="bg-tertiary-container p-6 rounded-2xl text-on-tertiary-container">
+                                <span class="material-symbols-outlined text-4xl mb-4">architecture</span>
+                                <div class="text-3xl font-bold font-headline mb-1">2030</div>
+                                <div class="text-sm opacity-80 uppercase tracking-widest font-semibold">Tầm nhìn quy hoạch</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-primary-container p-6 rounded-2xl text-white">
+                                <span class="material-symbols-outlined text-4xl mb-4">groups</span>
+                                <div class="text-3xl font-bold font-headline mb-1">+1.2M</div>
+                                <div class="text-sm opacity-80 uppercase tracking-widest font-semibold">Dân số dự kiến</div>
+                            </div>
+                            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                                <img class="w-full h-80 object-cover" data-alt="Abstract stylized map of Nghe An showing new administrative boundaries with gold and red highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB67XZP8O135Q-WYwCV2cGdycOcyuOaUYkmaf6xNhScJguJp7sln2PVwY301SQjf6ar4mwjGGLu6H1HRXEbjwLpTUqIOvQ7Dg18Epp9O5NnPgSuhJnSrbpfqj39QA-JTtcMU5RFu9vt8apztoYnP4jm-NWw_-Q8OgB_evzMwouWjy5p8RVQVqim_ZsI6UUm-gjSTdYaa6fM3eBTwdu8D2eKx1ZVutG-Nw3qwlrfePAz4f_cuA7AUV5kAwe-okyz15gr-JIw96ZRE1s"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-surface-container-low">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="mb-16 text-center max-w-2xl mx-auto">
+                <h2 class="text-4xl font-headline font-extrabold text-on-surface mb-4">Điểm Đến Di Sản</h2>
+                <div class="h-1 w-20 bg-secondary mx-auto"></div>
+                <p class="mt-6 text-on-surface-variant font-body">Từ biển xanh cát trắng đến những rặng núi hùng vĩ, mỗi góc nhỏ của Nghệ An đều kể một câu chuyện riêng.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[700px]">
+                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block uppercase tracking-wider">Di Tích Quốc Gia</span>
+                        <h3 class="text-3xl font-headline font-bold text-white mb-2">Nam Đàn: Cội Nguồn</h3>
+                        <p class="text-white/80 font-body text-sm max-w-md">Làng Sen quê Bác, nơi lưu giữ những giá trị văn hóa và tinh thần bất diệt của dân tộc Việt Nam.</p>
+                        <a href="di-san.html" class="mt-6 flex items-center text-secondary font-bold text-sm gap-2">
+                            Xem chi tiết <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-zYvxhJDAIdGqIH4QJ6-npY1jxxUbMhyS03EPyZGjWtHyzYsv1Gq8z_q-wnLl2N67sWcVeO-76rDknvkSL5xG5-y5BdAEEH5ZZNPvZoG1iJJYdhlwuv7uH3ea9tnid6N8xQGd8SHLtX66M47LAZDqQ2ratQIEyokxnWBYxH1FrWXBpcNBngUpkXcDz5ua7cxTU6H6QjFfk4fLMfhvcrM1ONBPIoFoZtwzk7XZykDjXSKYb91YL3FhVY8IEvdcplLtAFd-GHfVZNc"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-tertiary/90 via-black/10 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <h3 class="text-2xl font-headline font-bold mb-1">Cửa Lò: Biển Gọi</h3>
+                        <p class="opacity-80 font-body text-sm">Vẻ đẹp hiện đại hòa quyện cùng thiên nhiên nhiệt đới.</p>
+                    </div>
+                </div>
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAkTkZ1KVTbTMGBrtyCYoJrfKj6Qr-VAB4XED4c291IxUrFOXQ_XmA4Y69k4e3v2BLKL1pmqAzmdCZmvoHoaw8LACFSMDs2ep90EuCkLSfiboK46mwETQ7mr2QU6syGPusB_nu4YMzn23b96tb7Pp8m3-9RiCBOBWC-PcP3Bj7Nbp-6frg2LnIETfNmV9LmyMBE38I3sbvbWUKwzm_k1heKRDOVnxxaa7fsaKruIIY62dkyUlwL53k4SX4ZkODXXjyXYTPJn9N8WA"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-headline font-bold mb-1">Miền Tây</h3>
+                        <p class="opacity-70 font-body text-xs italic">Kỳ quan Pù Mát</p>
+                    </div>
+                </div>
+                <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdzi-NTiuqywePzXd3zwFVXv2jp8dVDhXLsuO8XqNTmXQ7FT3adgBFsxyaQ7iH-mEZBAEx-QhqPcEcX8AjZ2ygCdIok4EefWaj0p_4v9XalQvHTiYamdfc12-ItUbWu89KhZR7BmTTcSlddfTJHMkKKgm0FysUxxEI2t4sqn9Z3RPLx7xDZ-8s3Xz4nLBczVthz0CCWXpbrLBpSAza9OSqIf2hxFQYc2oTHuquUh2AtKQLpyQgzzYwunOb3udx2BU1t9grbxr4jM"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-headline font-bold mb-1">Văn Hóa</h3>
+                        <p class="opacity-70 font-body text-xs italic">Điệu hò Ví Giặm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-5xl font-headline font-extrabold text-primary tracking-tighter">Lịch Sử <span class="text-on-surface">Sống</span></h2>
+                    <p class="text-on-surface-variant font-body mt-4 text-lg">Những danh nhân và sự kiện làm nên tâm hồn xứ Nghệ.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Hồ Chí Minh -->
+                <div class="museum-card group bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-transparent hover:border-outline-variant/30">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden mb-6">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRjDkWa-rJGfxpnp11zizWbuLvSXyYl4Y7koGi9OLr8kTMGCWfmuB--DjcWbzDw3zqE7Tx8NKDx718KaspWU9ELMQFHyF4pnAT5DY8mPkk_kLRhI1CZhVeTqiVqlSz5NppxobqhMSqo6TuHZMIFu2l4AQzbHAtmG_I_A0EmTWobOb1E8Jw34iXnrthEeQX-YnqVYIQZyLogpN91x-DOULAzxE0sWh9G4XBA6ogYJJz91aPOPkwZNkRU-4TOEk9DVUXFTTsyFnwpYk"/>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-[0.15em] text-secondary mb-2 block">Lãnh Tụ Vĩ Đại</span>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Hồ Chí Minh</h3>
+                    <p class="text-sm font-body text-on-surface-variant leading-relaxed">
+                        Người con ưu tú của quê hương Nam Đàn, người đã dành cả cuộc đời cho độc lập, tự do của dân tộc và hạnh phúc của nhân dân.
+                    </p>
+                </div>
+                <!-- Phan Bội Châu -->
+                <div class="museum-card group bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-transparent hover:border-outline-variant/30">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden mb-6">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Rn5Kxgq1zhesOVIY2eCcKvuLboF4dd0msujUHtnzz_QwLJDuGu8-2AS2pLNI4mz75-c__RSqOhiOCkOMTl1EtlS4Brbn0KVvmWaiPESb5G7yLBGpOOsWSW8sqw54zSupN1b7vTXmU_DHkbaaE6eJWcymDTfovRv0XZ2EvPjWoV8AYD1taa5RqnktMKDEjF87udrkS0lJGJUN1dKkoktEbx0D82PeIy44w3-3rxgyehBLgfcljnxoe80ITaVrbShobBbV2YjFM0M"/>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-[0.15em] text-secondary mb-2 block">Nhà Cách Mạng</span>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Phan Bội Châu</h3>
+                    <p class="text-sm font-body text-on-surface-variant leading-relaxed">
+                        Nhà tư tưởng, nhà văn hóa lớn, người khởi xướng phong trào Đông Du đầy khí phách tại vùng đất địa linh.
+                    </p>
+                </div>
+                <!-- Hồ Xuân Hương -->
+                <div class="museum-card group bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-transparent hover:border-outline-variant/30">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden mb-6">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHVi65qiie4FyKpIBOQtcTd-b2Z8gVishfayB_jQA2OvUx7EgujUrb3Kn5BUSmDeXYqQ-qU6X8ViBwh6XjdbjHmH0_RRnBPBWti_vMD2cDavGQ-cPYiFrFWdTX5Ll-R34MtoSk74XeKgJMoPVqkJLOjy9Wk0cshdDTP2Ba4CiCRuuIiycycUXFx-q5aFkO357ctNpS4NhYtDaACW00jMXFvq0eFly12JBHAP_VsX5ivP2HgGKKIY2VbfF7kUYVF4eOrTKBk9UE9GU"/>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-[0.15em] text-secondary mb-2 block">Nữ Sĩ Thơ Nôm</span>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Hồ Xuân Hương</h3>
+                    <p class="text-sm font-body text-on-surface-variant leading-relaxed">
+                        "Bà chúa thơ Nôm" với tâm hồn phóng khoáng, trí tuệ sắc sảo, niềm tự hào của văn học cổ điển Việt Nam từ dòng họ Hồ - Quỳnh Đôi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="js/site-data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/transitions.js"></script>
+</body>
+</html>

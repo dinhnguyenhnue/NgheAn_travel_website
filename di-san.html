@@ -1,0 +1,172 @@
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hành Trình Di Sản | Nghệ An</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #7c000e;
+            --secondary: #735c00;
+            --background: #fff8f7;
+        }
+        body { 
+            background-color: var(--background); 
+            color: #261817; 
+            font-family: 'Outfit', sans-serif;
+            opacity: 0;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-headline { font-family: 'Marcellus', serif !important; }
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            transform: translateX(-100%);
+            pointer-events: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7c000e",
+                        "secondary": "#735c00",
+                        "background": "#fff8f7",
+                        "surface": "#fff8f7",
+                    },
+                    "fontFamily": {
+                        "headline": ["Marcellus", "serif"],
+                        "body": ["Outfit", "sans-serif"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fff8f7; color: #261817; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .heritage-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .heritage-card:hover { transform: translateY(-8px); scale: 1.02; }
+    </style>
+</head>
+<body class="bg-background text-on-surface" data-page="di-san">
+    <div id="nav-container"></div>
+
+    <main class="w-full">
+        <section class="relative h-[600px] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover" data-alt="Stunning aerial view of the Lam River winding through green valleys of Nghe An with traditional tiled roof villages along the banks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+            </div>
+            <div class="relative z-10 text-center px-8">
+                <span class="text-secondary font-bold uppercase tracking-[0.3em] text-sm mb-4 block">Khám Phá Tâm Hồn Xứ Nghệ</span>
+                <h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white mb-6">Hành Trình Di Sản</h1>
+                <p class="text-white/80 max-w-2xl mx-auto font-body text-lg">Nơi lưu giữ linh hồn, cốt cách và những trang sử hào hùng của mảnh đất địa linh nhân kiệt.</p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-surface max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+                <div class="md:col-span-4 sticky top-32">
+                    <h2 class="text-4xl font-headline font-bold text-primary mb-6 leading-tight">Dấu Ấn <br/>Thời Gian</h2>
+                    <div class="w-16 h-1 bg-secondary mb-8"></div>
+                    <p class="text-on-surface-variant leading-relaxed mb-8">
+                        Nghệ An không chỉ có biển xanh, rừng thẳm mà còn là một "bảo tàng sống" với hệ thống di tích, hiện vật vô giá.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+                            <span class="material-symbols-outlined text-secondary">history_edu</span>
+                            <div class="text-sm font-bold opacity-80 uppercase tracking-widest">2.600+ Di tích</div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+                            <span class="material-symbols-outlined text-secondary">museum</span>
+                            <div class="text-sm font-bold opacity-80 uppercase tracking-widest">5 Di tích Quốc gia đặc biệt</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="heritage-card bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-outline-variant/20 group">
+                            <div class="h-64 overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHwu9TThFLAVrmWoRjevAeS4Bwc2XNMg9bwkcNQEdLukfE9M6QkLdS4WROfmlk1K-sGeg0IOtr9ds6cX7btjwvlZJzRa9NkL-_LDc0qoWlhJDdWdr534fkK83FtjOjYbPYNbyWPXRL4oHDUotzhk2ifqeRazvYB56Ywq6nodG3P7u0PzX_5qLoZWYfU5d4Gq3Ieb9L-7e6PSoL8AzptSOGni3Nm8R30nVPE14hoPOJyNU-IYMbP4MhbWTKBXQBGmkZRyhvRJV7_qE"/>
+                            </div>
+                            <div class="p-8">
+                                <span class="text-secondary font-bold text-xs uppercase mb-2 block">Địa danh tiêu biểu</span>
+                                <h3 class="text-2xl font-headline font-bold mb-4">Làng Sen Quê Nội</h3>
+                                <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+                                    Nơi sinh ra và nuôi dưỡng tâm hồn vĩ đại của Chủ tịch Hồ Chí Minh, với những nếp nhà tranh đơn sơ và hương sen thơm ngát.
+                                </p>
+                                <button class="text-primary font-bold flex items-center gap-2 text-sm">Khám phá <span class="material-symbols-outlined text-xs">open_in_new</span></button>
+                            </div>
+                        </div>
+                        <div class="heritage-card bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-outline-variant/20 group">
+                            <div class="h-64 overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB67XZP8O135Q-WYwCV2cGdycOcyuOaUYkmaf6xNhScJguJp7sln2PVwY301SQjf6ar4mwjGGLu6H1HRXEbjwLpTUqIOvQ7Dg18Epp9O5NnPgSuhJnSrbpfqj39QA-JTtcMU5RFu9vt8apztoYnP4jm-NWw_-Q8OgB_evzMwouWjy5p8RVQVqim_ZsI6UUm-gjSTdYaa6fM3eBTwdu8D2eKx1ZVutG-Nw3qwlrfePAz4f_cuA7AUV5kAwe-okyz15gr-JIw96ZRE1s"/>
+                            </div>
+                            <div class="p-8">
+                                <span class="text-secondary font-bold text-xs uppercase mb-2 block">Kiến trúc cổ</span>
+                                <h3 class="text-2xl font-headline font-bold mb-4">Đền Hồng Sơn</h3>
+                                <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+                                    Ngôi đền cổ kính mang đậm kiến trúc thời Nguyễn, nơi sinh hoạt văn hóa tâm linh quan trọng của người dân thành phố Vinh.
+                                </p>
+                                <button class="text-primary font-bold flex items-center gap-2 text-sm">Khám phá <span class="material-symbols-outlined text-xs">open_in_new</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <div class="md:col-span-6 w-full md:w-1/2">
+                        <div class="relative rounded-[40px] overflow-hidden shadow-2xl rotate-2 group hover:rotate-0 transition-all duration-500">
+                            <img class="w-full h-[500px] object-cover" data-alt="Traditional puppet performance and Ho Vi Giam singing festival in a historic Nghe An temple courtyard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdzi-NTiuqywePzXd3zwFVXv2jp8dVDhXLsuO8XqNTmXQ7FT3adgBFsxyaQ7iH-mEZBAEx-QhqPcEcX8AjZ2ygCdIok4EefWaj0p_4v9XalQvHTiYamdfc12-ItUbWu89KhZR7BmTTcSlddfTJHMkKKgm0FysUxxEI2t4sqn9Z3RPLx7xDZ-8s3Xz4nLBczVthz0CCWXpbrLBpSAza9OSqIf2hxFQYc2oTHuquUh2AtKQLpyQgzzYwunOb3udx2BU1t9grbxr4jM"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 w-full md:w-1/2">
+                        <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-4 block">Di Sản Phi Vật Thể</span>
+                        <h2 class="text-4xl font-headline font-black text-on-surface mb-8 leading-tight">Dân Ca Ví, Giặm Nghệ Tĩnh</h2>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed">
+                            Được UNESCO vinh danh là Di sản văn hóa phi vật thể đại diện của nhân loại, Ví, Giặm là tiếng lòng, là tâm hồn và là hơi thở của người dân xứ Nghệ.
+                        </p>
+                        <p class="text-stone-500 text-sm mb-10 italic border-l-4 border-secondary pl-6">
+                            "Mời anh về quê em, nghe điệu hò Ví Giặm..."
+                        </p>
+                        <div class="flex gap-6">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm">
+                                <span class="material-symbols-outlined text-secondary text-4xl">music_note</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-2xl shadow-sm">
+                                <span class="material-symbols-outlined text-secondary text-4xl">theater_comedy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/site-data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/transitions.js"></script>
+</body>
+</html>
