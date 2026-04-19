@@ -168,16 +168,16 @@
     <script>
         const LOCATIONS = [
             // Du lịch & Danh thắng
-            { id: "cua-lo", name: "Biển Cửa Lò", category: "tourism", lat: 18.8167, lng: 105.7167, image: "https://images.unsplash.com/photo-1544321742-9989808a705e?auto=format&fit=crop&q=80&w=800", tags: ["Biển Đảo", "Hải Sản"], description: "Bãi biển nổi tiếng nhất Nghệ An với bãi cát dài 10km.", articleUrl: "https://visitnghean.gov.vn" },
-            { id: "pu-mat", name: "Vườn Quốc gia Pù Mát", category: "tourism", lat: 18.9833, lng: 104.4, image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800", tags: ["Rừng Nguyên Sinh", "Thác Nước"], description: "Khu dự trữ sinh quyển thế giới với vẻ đẹp hoang sơ.", articleUrl: "https://visitnghean.gov.vn" },
-            { id: "lang-sen", name: "Khu Di Tích Làng Sen", category: "tourism", lat: 18.6517, lng: 105.3833, image: "https://images.unsplash.com/photo-1596422846543-75c6fc183f27?auto=format&fit=crop&q=80&w=800", tags: ["Lịch Sử", "Bác Hồ"], description: "Quê hương của Chủ tịch Hồ Chí Minh vĩ đại.", articleUrl: "https://visitnghean.gov.vn" },
-            { id: "doi-che", name: "Đồi Chè Thanh Chương", category: "craft", lat: 18.7, lng: 105.25, image: "https://images.unsplash.com/photo-1545657802-53696f8c7b65?auto=format&fit=crop&q=80&w=800", tags: ["Check-in", "Thiên Nhiên"], description: "Đảo chè xanh mướt giữa lòng hồ nước.", articleUrl: "https://visitnghean.gov.vn" },
-            { id: "xao-va", name: "Thác Xao Va", category: "tourism", lat: 19.7333, lng: 104.6167, image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", tags: ["Miền Tây Nghệ An", "Thác Nước"], description: "Dòng thác hùng vĩ giữa rừng già Quế Phong.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "cua-lo", name: "Biển Cửa Lò", category: "tourism", lat: 18.8167, lng: 105.7167, image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800", tags: ["Biển Đảo", "Hải Sản"], description: "Bãi biển nổi tiếng nhất Nghệ An với bãi cát dài 10km.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "pu-mat", name: "Vườn Quốc gia Pù Mát", category: "tourism", lat: 18.9833, lng: 104.4, image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=800", tags: ["Rừng Nguyên Sinh", "Thác Nước"], description: "Khu dự trữ sinh quyển thế giới với vẻ đẹp hoang sơ.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "lang-sen", name: "Khu Di Tích Làng Sen", category: "tourism", lat: 18.6517, lng: 105.3833, image: "https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&q=80&w=800", tags: ["Lịch Sử", "Bác Hồ"], description: "Quê hương của Chủ tịch Hồ Chí Minh vĩ đại.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "doi-che", name: "Đồi Chè Thanh Chương", category: "craft", lat: 18.7, lng: 105.25, image: "https://images.unsplash.com/photo-1544733422-251e532ca221?auto=format&fit=crop&q=80&w=800", tags: ["Check-in", "Thiên Nhiên"], description: "Đảo chè xanh mướt giữa lòng hồ nước.", articleUrl: "https://visitnghean.gov.vn" },
+            { id: "xao-va", name: "Thác Xao Va", category: "tourism", lat: 19.7333, lng: 104.6167, image: "https://images.unsplash.com/photo-1433006344511-7223992b86a0?auto=format&fit=crop&q=80&w=800", tags: ["Miền Tây Nghệ An", "Thác Nước"], description: "Dòng thác hùng vĩ giữa rừng già Quế Phong.", articleUrl: "https://visitnghean.gov.vn" },
             
             // Ẩm thực
-            { id: "chao-luon", name: "Cháo Lươn Thành Vinh", category: "food", lat: 18.6739, lng: 105.6920, image: "https://images.unsplash.com/photo-1591814468924-caf7f4b2c7ff?auto=format&fit=crop&q=80&w=800", tags: ["Đặc Sản", "Bữa Sáng"], description: "Vị cay nồng đặc trưng của súp lươn xứ Nghệ.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
-            { id: "keo-cu-do", name: "Kẹo Cu Đơ", category: "food", lat: 18.67, lng: 105.69, image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800", tags: ["Quà Tặng", "Ăn Vặt"], description: "Vị ngọt mật mía quyện cùng gừng và lạc giòn.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
-            { id: "cam-xa-doai", name: "Cam Xã Đoài", category: "food", lat: 18.7667, lng: 105.5833, image: "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=800", tags: ["Trái Cây", "Nghi Lộc"], description: "Loại cam tiến vua ngọt thơm nức tiếng.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            { id: "chao-luon", name: "Cháo Lươn Thành Vinh", category: "food", lat: 18.6739, lng: 105.6920, image: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&q=80&w=800", tags: ["Đặc Sản", "Bữa Sáng"], description: "Vị cay nồng đặc trưng của súp lươn xứ Nghệ.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            { id: "keo-cu-do", name: "Kẹo Cu Đơ", category: "food", lat: 18.67, lng: 105.69, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800", tags: ["Quà Tặng", "Ăn Vặt"], description: "Vị ngọt mật mía quyện cùng gừng và lạc giòn.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
+            { id: "cam-xa-doai", name: "Cam Xã Đoài", category: "food", lat: 18.7667, lng: 105.5833, image: "https://images.unsplash.com/photo-1611080626919-7cf5a97a5163?auto=format&fit=crop&q=80&w=800", tags: ["Trái Cây", "Nghi Lộc"], description: "Loại cam tiến vua ngọt thơm nức tiếng.", articleUrl: "https://vinwonders.com/vi/wonderpedia/news/dac-san-nghe-an/" },
             
             // Làng nghề
             { id: "lang-gom", name: "Làng Gốm Trù Sơn", category: "craft", lat: 18.9, lng: 105.27, image: "https://images.unsplash.com/photo-1525498128493-380d1990a112?auto=format&fit=crop&q=80&w=800", tags: ["Gốm Sứ", "Đô Lương"], description: "Làng gốm cổ truyền duy nhất vẫn làm bằng tay.", articleUrl: "https://baonghean.vn" },
@@ -201,7 +201,7 @@
         });
 
         function initMap() {
-            // Center of Nghe An
+            // Center of Nghệ An
             map = L.map('map', {
                 center: [19.1, 104.9],
                 zoom: 9,

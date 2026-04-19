@@ -14,7 +14,7 @@ function renderNavbar(activeId) {
         <nav class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full px-8 py-3 shadow-2xl flex justify-between items-center transition-all duration-500 hover:bg-white/15">
             <div class="flex items-center gap-8">
                 <div class="text-xl font-headline font-black tracking-widest text-primary uppercase">
-                    <a href="index.html" class="hover:opacity-80 transition-opacity">NGHE AN</a>
+                    <a href="index.html" class="hover:opacity-80 transition-opacity">NGHỆ AN</a>
                 </div>
                 <div class="hidden lg:flex gap-8 items-center font-body text-[13px] font-semibold uppercase tracking-tighter">
                     ${siteData.navigation.map(item => `
@@ -27,6 +27,9 @@ function renderNavbar(activeId) {
                 </div>
             </div>
             <div class="flex items-center gap-4">
+                <a href="https://www.youtube.com/watch?v=RS-6bREYwHs&list=RDRS-6bREYwHs&start_radio=1" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all duration-300" title="Nghe Dân ca Ví Giặm">
+                    <span class="material-symbols-outlined text-[20px]">music_note</span>
+                </a>
                 <button id="search-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all duration-300">
                     <span class="material-symbols-outlined text-[20px]">search</span>
                 </button>
@@ -74,9 +77,9 @@ function renderNavbar(activeId) {
             <div class="mt-20 pt-10 border-t border-white/10 opacity-0 transform translate-y-10" id="mobile-menu-footer">
                 <p class="text-white/60 font-body text-sm mb-4 italic">"${siteData.slogan}"</p>
                 <div class="flex gap-4">
-                    <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white">
+                    <a href="${siteData.footer.socials.facebook}" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary transition-colors">
                         <span class="material-symbols-outlined text-sm">public</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -171,9 +174,12 @@ function renderFooter() {
                     ${siteData.footer.description}
                 </p>
                 <div class="flex gap-4">
-                    <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                    <a href="${siteData.footer.socials.facebook}" target="_blank" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
                         <span class="material-symbols-outlined text-sm">public</span>
-                    </div>
+                    </a>
+                    <a href="${siteData.footer.socials.youtube}" target="_blank" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+                        <span class="material-symbols-outlined text-sm">play_circle</span>
+                    </a>
                 </div>
             </div>
             <div class="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
